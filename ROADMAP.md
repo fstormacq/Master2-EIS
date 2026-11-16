@@ -46,23 +46,35 @@
 - [ ] Mettre en place l'arborescence :
 
 ```
-subset/
-  tables.txt              # les 22 tables, regroupées par sous-domaine
-tools/                    # tous les scripts (extraction, inférence, stats…)
-step1-schemas/
-  ps/                     # schéma physique
-  fk-analysis/            # inférence des FK, precision/recall
-  ls/                     # schéma logique
-  cs/                     # schéma conceptuel
-step2-accesses/
-  sqlinspect/             # sorties brutes et filtrées de SQLInspect
-  other/                  # accès détectés autrement
-  stats/                  # statistiques et graphes
-  lss/                    # logical subschema
-step3-whatif/             # un fichier par scénario
-step4-quality/
-bonus-versions/
-report/                   # sources du rapport PDF et slides
+database-scope/
+  studied-tables.txt         # les 22 tables, regroupées par sous-domaine
+
+tools/                       # scripts d'extraction, d'inférence, de statistiques…
+
+01-schema-reconstruction/
+  physical-schema/           # schéma physique
+  foreign-key-inference/     # inférence des FK, precision/recall
+  logical-schema/            # schéma logique
+  conceptual-schema/         # schéma conceptuel
+
+02-access-analysis/
+  sqlinspect-results/
+    raw/                     # sorties brutes de SQLInspect
+    filtered/                # sorties restreintes aux 22 tables
+  other-accesses/            # accès non vus par SQLInspect (ORM PO, API Query, helpers JDBC…)
+  statistics/                # statistiques et graphiques
+  logical-subschema/         # schéma logique utilisé (LSS)
+
+03-what-if-analysis/         # un fichier par scénario
+
+04-quality-assessment/       # mérites, défauts et recommandations (schéma et code d'accès)
+
+bonus-version-evolution/     # bonus A : comparaison entre trois versions d'ADempiere
+
+report/                      # sources du rapport PDF et des slides
+
+target/                      # code source d'ADempiere (submodule, lecture seule)
+workspace/                   # workspace Eclipse pour SQLInspect (ignoré par Git)
 ```
 
 - [ ] Un `README.md` par dossier : ce qu'il contient, et la commande pour le régénérer
@@ -100,7 +112,7 @@ report/                   # sources du rapport PDF et slides
 - [ ] Documenter l'origine de chaque table : définition initiale, migrations qui la créent ou la modifient
 - [ ] Documenter les écarts entre sources : c'est une observation précieuse pour l'étape 4
 
-**Livrable :** un tableau `table → source(s) → migrations` dans `step1-schemas/ps/README.md`
+**Livrable :** un tableau `table → source(s) → migrations` dans `01-schema-reconstruction/physical-schema/README.md`
 
 ### 1.3 Extraire le schéma physique (PS)
 
@@ -135,7 +147,7 @@ Le schéma déclare des FK explicites. Il faut donc :
   - [ ] les colonnes `*_ID` sans contrainte.
 - [ ] Ajouter les FK implicites au schéma enrichi
 
-**Livrables :** `step1-schemas/fk-analysis/` (script, candidats, matrice de confusion, tableau precision/recall, liste des FK implicites)
+**Livrables :** `01-schema-reconstruction/foreign-key-inference/` (script, candidats, matrice de confusion, tableau precision/recall, liste des FK implicites)
 
 ### 1.5 Schéma logique (LS)
 
@@ -171,7 +183,7 @@ Le schéma déclare des FK explicites. Il faut donc :
 - [ ] Installer SQLInspect en ligne de commande (README et Getting Started du dépôt SQLInspect)
 - [ ] Le lancer sur `target/`, en commençant par les modules pertinents : `base/`, `org.adempiere.asset/`
 - [ ] Filtrer les résultats sur les requêtes qui touchent les 22 tables
-- [ ] Sauvegarder les sorties brutes dans `step2-accesses/sqlinspect/`
+- [ ] Sauvegarder les sorties brutes dans `02-access-analysis/sqlinspect-results/raw/`
 - [ ] Documenter la commande exacte, la version de l'outil et les éventuels problèmes rencontrés
 
 ### 2.2 Accès non détectés par SQLInspect
@@ -241,7 +253,7 @@ Pour chaque mécanisme :
 ### 3.1 Préparation
 
 - [ ] Écrire un outil d'**analyse d'impact** : à partir d'une table ou d'une colonne, il retrouve tous les accès dans l'inventaire de l'étape 2
-- [ ] Définir un gabarit commun, `step3-whatif/TEMPLATE.md`
+- [ ] Définir un gabarit commun, `03-what-if-analysis/TEMPLATE.md`
 
 ### 3.2 Scénarios (au moins 10, variés)
 

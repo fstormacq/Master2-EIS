@@ -26,7 +26,7 @@ Group project for **INFOM218 — Software Evolution**, University of Namur (2026
 
 ## Scope: the fixed assets subset
 
-The 22 tables cover the full lifecycle of a fixed asset, from acquisition to depreciation and disposal. The list is kept in [`subset/tables.txt`](subset/tables.txt).
+The 22 tables cover the full lifecycle of a fixed asset, from acquisition to depreciation and disposal. The list is kept in [`database-scope/studied-tables.txt`](database-scope/studied-tables.txt).
 
 | Sub-domain | Tables |
 |---|---|
@@ -39,16 +39,17 @@ The 22 tables cover the full lifecycle of a fixed asset, from acquisition to dep
 ## Repository layout
 
 ```
-ROADMAP.md        project plan and progress tracking
-subset/           list of the studied tables
-tools/            scripts used to produce every result
-step1-schemas/    PS, LS, CS and foreign key analysis
-step2-accesses/   database access inventories, statistics, used subschema
-step3-whatif/     schema evolution scenarios and impact analysis
-step4-quality/    quality assessment and recommendations
-bonus-versions/   cross-version analysis
-report/           final report and slides
-target/           ADempiere source code (Git submodule, read-only)
+ROADMAP.md                 project plan and progress tracking
+database-scope/            list of the studied tables
+tools/                     scripts used to produce every result
+01-schema-reconstruction/  PS, LS, CS and foreign key inference
+02-access-analysis/        database access inventories, statistics, used subschema
+03-what-if-analysis/       schema evolution scenarios and impact analysis
+04-quality-assessment/     quality assessment and recommendations
+bonus-version-evolution/   cross-version analysis
+report/                    final report and slides
+target/                    ADempiere source code (Git submodule, read-only)
+workspace/                 Eclipse workspace used by SQLInspect (not versioned)
 ```
 
 Each folder has its own `README.md`. It explains what the folder contains and which command regenerates it. Every result in this repository is meant to be **reproducible** from the pinned source code.
