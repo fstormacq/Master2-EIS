@@ -43,7 +43,7 @@
 ## Phase 0 : mise en place
 
 - [x] Créer la repo et figer ADempiere comme submodule sur `4ae098f`
-- [ ] Mettre en place l'arborescence :
+- [x] Mettre en place l'arborescence :
 
 ```
 database-scope/
