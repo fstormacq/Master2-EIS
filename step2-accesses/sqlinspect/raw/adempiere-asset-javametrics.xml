@@ -1,0 +1,123 @@
+<?xml version="1.0" ?>
+<JavaMetrics>
+<JavaElement Kind="JavaProject" Name="adempiere-asset">
+  <Metrics>
+    <Metric name="Hotspots" value="8"></Metric>
+    <Metric name="Queries" value="8"></Metric>
+    <Metric name="Inserts" value="0"></Metric>
+    <Metric name="Selects" value="0"></Metric>
+    <Metric name="Updates" value="0"></Metric>
+    <Metric name="Deletes" value="0"></Metric>
+  </Metrics>
+  <Children>
+    <JavaElement Kind="PackageFragmentRoot" Name="0_base">
+      <Metrics>
+        <Metric name="Hotspots" value="8"></Metric>
+        <Metric name="Queries" value="8"></Metric>
+        <Metric name="Inserts" value="0"></Metric>
+        <Metric name="Selects" value="0"></Metric>
+        <Metric name="Updates" value="0"></Metric>
+        <Metric name="Deletes" value="0"></Metric>
+      </Metrics>
+      <Children>
+        <JavaElement Kind="PackageFragment" Name="org.compiere.asset.controller">
+          <Metrics>
+            <Metric name="Hotspots" value="2"></Metric>
+            <Metric name="Queries" value="2"></Metric>
+            <Metric name="Inserts" value="0"></Metric>
+            <Metric name="Selects" value="0"></Metric>
+            <Metric name="Updates" value="0"></Metric>
+            <Metric name="Deletes" value="0"></Metric>
+          </Metrics>
+          <Children>
+            <JavaElement Kind="CompilationUnit" Name="CalloutAsset.java">
+              <Metrics>
+                <Metric name="Hotspots" value="2"></Metric>
+                <Metric name="Queries" value="2"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="0"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+          </Children>
+        </JavaElement>
+        <JavaElement Kind="PackageFragment" Name="org.compiere.asset.model">
+          <Metrics>
+            <Metric name="Hotspots" value="6"></Metric>
+            <Metric name="Queries" value="6"></Metric>
+            <Metric name="Inserts" value="0"></Metric>
+            <Metric name="Selects" value="0"></Metric>
+            <Metric name="Updates" value="0"></Metric>
+            <Metric name="Deletes" value="0"></Metric>
+          </Metrics>
+          <Children>
+            <JavaElement Kind="CompilationUnit" Name="MRegistration.java">
+              <Metrics>
+                <Metric name="Hotspots" value="2"></Metric>
+                <Metric name="Queries" value="2"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="0"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+            <JavaElement Kind="CompilationUnit" Name="MRegistrationAttribute.java">
+              <Metrics>
+                <Metric name="Hotspots" value="1"></Metric>
+                <Metric name="Queries" value="1"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="0"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+            <JavaElement Kind="CompilationUnit" Name="SetGetUtil.java">
+              <Metrics>
+                <Metric name="Hotspots" value="1"></Metric>
+                <Metric name="Queries" value="1"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="0"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+            <JavaElement Kind="CompilationUnit" Name="MDepreciationMethod.java">
+              <Metrics>
+                <Metric name="Hotspots" value="1"></Metric>
+                <Metric name="Queries" value="1"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="0"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+            <JavaElement Kind="CompilationUnit" Name="MDepreciationConvention.java">
+              <Metrics>
+                <Metric name="Hotspots" value="1"></Metric>
+                <Metric name="Queries" value="1"></Metric>
+                <Metric name="Inserts" value="0"></Metric>
+                <Metric name="Selects" value="0"></Metric>
+                <Metric name="Updates" value="0"></Metric>
+                <Metric name="Deletes" value="0"></Metric>
+              </Metrics>
+              <Children>
+              </Children>
+            </JavaElement>
+          </Children>
+        </JavaElement>
+      </Children>
+    </JavaElement>
+  </Children>
+</JavaElement>
+</JavaMetrics>

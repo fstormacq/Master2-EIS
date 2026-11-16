@@ -1,0 +1,99 @@
+<?xml version="1.0" ?>
+<Queries>
+  <Query id="1">
+    <Value>{{na}}</Value>
+    <HotspotFinder>JDBCHotspotFinder</HotspotFinder>
+    <ExecPackage>org.compiere.asset.controller</ExecPackage>
+    <ExecClass>CalloutAsset</ExecClass>
+    <ExecFile>/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/controller/CalloutAsset.java</ExecFile>
+    <ExecLine>95</ExecLine>
+    <ExecString>pstmt.executeQuery()</ExecString>
+    <CallStack>
+      <Call method="org.compiere.asset.controller.CalloutAsset.tablePeriod(java.util.Properties,int,org.compiere.asset.controller.GridTab,org.compiere.asset.controller.GridField,java.lang.Object,java.lang.Object)" file="/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/controller/CalloutAsset.java" methodLine="65" callLine="95"></Call>
+    </CallStack>
+  </Query>
+  <Query id="2">
+    <Value>{{na}}</Value>
+    <HotspotFinder>JDBCHotspotFinder</HotspotFinder>
+    <ExecPackage>org.compiere.asset.controller</ExecPackage>
+    <ExecClass>CalloutAsset</ExecClass>
+    <ExecFile>/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/controller/CalloutAsset.java</ExecFile>
+    <ExecLine>143</ExecLine>
+    <ExecString>pstmt.executeQuery()</ExecString>
+    <CallStack>
+      <Call method="org.compiere.asset.controller.CalloutAsset.fieldClear(java.util.Properties,int,org.compiere.asset.controller.GridTab,org.compiere.asset.controller.GridField,java.lang.Object,java.lang.Object)" file="/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/controller/CalloutAsset.java" methodLine="115" callLine="143"></Call>
+    </CallStack>
+  </Query>
+  <Query id="3">
+    <Value>{{na}}</Value>
+    <HotspotFinder>JDBCHotspotFinder</HotspotFinder>
+    <ExecPackage>org.compiere.asset.model</ExecPackage>
+    <ExecClass>MRegistration</ExecClass>
+    <ExecFile>/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MRegistration.java</ExecFile>
+    <ExecLine>133</ExecLine>
+    <ExecString>pstmt.executeQuery()</ExecString>
+    <CallStack>
+      <Call method="org.compiere.asset.model.MRegistration.getValues(boolean)" file="/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MRegistration.java" methodLine="111" callLine="133"></Call>
+    </CallStack>
+  </Query>
+  <Query id="4">
+    <Value>{{na}}</Value>
+    <HotspotFinder>JDBCHotspotFinder</HotspotFinder>
+    <ExecPackage>org.compiere.asset.model</ExecPackage>
+    <ExecClass>MRegistration</ExecClass>
+    <ExecFile>/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MRegistration.java</ExecFile>
+    <ExecLine>179</ExecLine>
+    <ExecString>pstmt.executeQuery()</ExecString>
+    <CallStack>
+      <Call method="org.compiere.asset.model.MRegistration.createMissingValues()" file="/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MRegistration.java" methodLine="161" callLine="179"></Call>
+    </CallStack>
+  </Query>
+  <Query id="5">
+    <Value>{{na}}</Value>
+    <HotspotFinder>JDBCHotspotFinder</HotspotFinder>
+    <ExecPackage>org.compiere.asset.model</ExecPackage>
+    <ExecClass>MRegistrationAttribute</ExecClass>
+    <ExecFile>/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MRegistrationAttribute.java</ExecFile>
+    <ExecLine>63</ExecLine>
+    <ExecString>pstmt.executeQuery()</ExecString>
+    <CallStack>
+      <Call method="org.compiere.asset.model.MRegistrationAttribute.getAll(java.util.Properties)" file="/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MRegistrationAttribute.java" methodLine="44" callLine="63"></Call>
+    </CallStack>
+  </Query>
+  <Query id="6">
+    <Value>{{na}}</Value>
+    <HotspotFinder>JDBCHotspotFinder</HotspotFinder>
+    <ExecPackage>org.compiere.asset.model</ExecPackage>
+    <ExecClass>SetGetUtil</ExecClass>
+    <ExecFile>/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/SetGetUtil.java</ExecFile>
+    <ExecLine>97</ExecLine>
+    <ExecString>pstmt.executeQuery()</ExecString>
+    <CallStack>
+      <Call method="org.compiere.asset.model.SetGetUtil.updateColumns(org.compiere.asset.model.SetGetModel[],java.lang.String[],java.lang.String,java.lang.Object[],java.lang.String)" file="/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/SetGetUtil.java" methodLine="76" callLine="97"></Call>
+    </CallStack>
+  </Query>
+  <Query id="7">
+    <Value>{{na}}</Value>
+    <HotspotFinder>JDBCHotspotFinder</HotspotFinder>
+    <ExecPackage>org.compiere.asset.model</ExecPackage>
+    <ExecClass>MDepreciationMethod</ExecClass>
+    <ExecFile>/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MDepreciationMethod.java</ExecFile>
+    <ExecLine>175</ExecLine>
+    <ExecString>cs.execute()</ExecString>
+    <CallStack>
+      <Call method="org.compiere.asset.model.MDepreciationMethod.invoke(int,java.math.BigDecimal,int,java.lang.String,int)" file="/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MDepreciationMethod.java" methodLine="134" callLine="175"></Call>
+    </CallStack>
+  </Query>
+  <Query id="8">
+    <Value>{{na}}</Value>
+    <HotspotFinder>JDBCHotspotFinder</HotspotFinder>
+    <ExecPackage>org.compiere.asset.model</ExecPackage>
+    <ExecClass>MDepreciationConvention</ExecClass>
+    <ExecFile>/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MDepreciationConvention.java</ExecFile>
+    <ExecLine>90</ExecLine>
+    <ExecString>cs.execute()</ExecString>
+    <CallStack>
+      <Call method="org.compiere.asset.model.MDepreciationConvention.invoke(int,java.lang.String,int,int,int)" file="/home/florian/dev/Master2-EIS/target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MDepreciationConvention.java" methodLine="65" callLine="90"></Call>
+    </CallStack>
+  </Query>
+</Queries>
