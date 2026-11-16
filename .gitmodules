@@ -1,0 +1,4 @@
+[submodule "target"]
+	path = target
+	url = https://github.com/adempiere/adempiere.git
+	shallow = true
