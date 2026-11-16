@@ -11,7 +11,7 @@ Group project for **INFOM218 — Software Evolution**, University of Namur (2026
 | **System studied** | ADempiere, `develop` branch, commit [`4ae098f`](https://github.com/adempiere/adempiere/commit/4ae098fd18065f1a658ff56de3b90e63aabfecb2) |
 | **Scope** | Fixed assets functional area: 22 tables, validated by the teaching team on 2 Nov 2026 |
 | **Database** | PostgreSQL |
-| **Status** | In progress. See [`ROADMAP.md`](ROADMAP.md) for detailed progress |
+| **Status** | In progress: SQLInspect set up and tested on the asset module. See [`ROADMAP.md`](ROADMAP.md) for detailed progress |
 | **Team** | Louca Mathieu (spokesperson), Nathan Lambrechts, Florian Stormacq |
 
 ## What this project delivers
@@ -70,6 +70,13 @@ git submodule update --init --depth 1
 
 Requirements depend on the step. Each folder's README lists its own (Python 3, Java for SQLInspect, …).
 
+To install SQLInspect (see [Third-party tools](#third-party-tools)):
+
+```bash
+sudo apt install openjdk-21-jdk xvfb
+./tools/fetch_sqlinspect.sh
+```
+
 ## Analysed version
 
 All analyses refer to a single, fixed version of ADempiere:
@@ -115,6 +122,23 @@ git commit -m "Bump ADempiere to <new-sha>"
 Then update the table above. Results produced on another version must state that version explicitly.
 
 </details>
+
+## Third-party tools
+
+Third-party tools are **not committed**. A script downloads a pinned version into `tools/` (ignored by Git) and checks its integrity.
+
+| Tool | Version | Source | Install |
+|---|---|---|---|
+| [SQLInspect](https://bitbucket.org/csnagy/sqlinspect) (Nagy & Cleve, ICSE 2018) | CLI `0.4.2.v20241021-1301`, Linux x86_64 | [Bitbucket downloads](https://bitbucket.org/csnagy/sqlinspect/downloads/) | `./tools/fetch_sqlinspect.sh` |
+
+SQLInspect archive SHA-256: `f91d8c1bfab0d5800d4c0b5d8f1b6dfe75a5044cc184dee499ced96531753c9c`
+
+**Requirements and known issues:**
+
+- **Java 21 or newer is required.** With Java 17, the tool fails at startup (`Unresolved requirement: osgi.ee ... version=21` in the Eclipse log). If `JAVA_HOME` points to an older JDK, it takes precedence over `update-alternatives`.
+- **No display:** the CLI is an Eclipse application. On a terminal without a graphical session, the analysis completes and writes its results, then crashes on exit (`gtk_init_check() failed`). Run it through `xvfb-run -a`.
+- **Workspace:** the tool creates a `workspace/` folder in the current directory (ignored by Git).
+- **Supported SQL dialects:** MySQL, Apache Impala, SQLite and MongoDB. **PostgreSQL is not supported**, so ADempiere is analysed with the MySQL dialect. This limitation must be considered when interpreting step 2 results.
 
 ## Contribution rules
 
