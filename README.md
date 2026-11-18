@@ -40,6 +40,7 @@ The 22 tables cover the full lifecycle of a fixed asset, from acquisition to dep
 
 ```
 ROADMAP.md                 project plan and progress tracking
+REPRODUCE.md               every command used to produce the results, in order
 database-scope/            list of the studied tables
 tools/                     scripts used to produce every result
 docker/                    Docker image for third-party tools (SQLInspect)
@@ -149,7 +150,7 @@ SQLInspect archive SHA-256: `f91d8c1bfab0d5800d4c0b5d8f1b6dfe75a5044cc184dee499c
 ## Contribution rules
 
 - Never modify code inside `target/`: it is a read-only reference.
-- Every generated artefact must come with the command or script that produces it.
+- Every generated artefact must come with the command or script that produces it, listed in [`REPRODUCE.md`](REPRODUCE.md).
 - Do not commit database dumps containing real data.
 - When an LLM is used, document the model, the prompts, and how its output was checked against the source code.
 
