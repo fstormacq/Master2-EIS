@@ -79,7 +79,7 @@ workspace/                   # workspace Eclipse pour SQLInspect (ignoré par Gi
 
 - [ ] Un `README.md` par dossier : ce qu'il contient, et la commande pour le régénérer
 - [ ] Convenir des conventions : noms de tables en MAJUSCULES, CSV séparés par `,`, encodage UTF-8
-- [ ] Installer les outils : Python 3, `cloc`, Java (pour SQLInspect), DB-Main ou un outil de diagramme, éventuellement PostgreSQL via Docker
+- [ ] Installer les outils : Python 3, `cloc`, Docker (pour SQLInspect), DB-Main ou un outil de diagramme, éventuellement PostgreSQL via Docker
 
 ---
 
@@ -180,11 +180,11 @@ Le schéma déclare des FK explicites. Il faut donc :
 ### 2.1 SQLInspect
 
 - [ ] **À commencer immédiatement** : c'est le poste le plus susceptible de bloquer
-- [ ] Installer SQLInspect en ligne de commande (README et Getting Started du dépôt SQLInspect)
+- [x] Installer SQLInspect en ligne de commande : image Docker `linux/amd64` (`docker/sqlinspect/`, wrapper `tools/sqlinspect.sh`), portable Linux / macOS (ARM émulé) / Windows
 - [ ] Le lancer sur `target/`, en commençant par les modules pertinents : `base/`, `org.adempiere.asset/`
 - [ ] Filtrer les résultats sur les requêtes qui touchent les 22 tables
 - [ ] Sauvegarder les sorties brutes dans `02-access-analysis/sqlinspect-results/raw/`
-- [ ] Documenter la commande exacte, la version de l'outil et les éventuels problèmes rencontrés
+- [ ] Documenter la commande exacte, la version de l'outil et les éventuels problèmes rencontrés (fait pour `org.adempiere.asset` : `tools/run_sqlinspect_asset.sh`, README de `raw/`)
 
 ### 2.2 Accès non détectés par SQLInspect
 

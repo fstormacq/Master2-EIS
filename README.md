@@ -11,7 +11,7 @@ Group project for **INFOM218 — Software Evolution**, University of Namur (2026
 | **System studied** | ADempiere, `develop` branch, commit [`4ae098f`](https://github.com/adempiere/adempiere/commit/4ae098fd18065f1a658ff56de3b90e63aabfecb2) |
 | **Scope** | Fixed assets functional area: 22 tables, validated by the teaching team on 2 Nov 2026 |
 | **Database** | PostgreSQL |
-| **Status** | In progress: SQLInspect set up and tested on the asset module. See [`ROADMAP.md`](ROADMAP.md) for detailed progress |
+| **Status** | In progress: SQLInspect set up (Docker) and tested on the asset module. See [`ROADMAP.md`](ROADMAP.md) for detailed progress |
 | **Team** | Louca Mathieu (spokesperson), Nathan Lambrechts, Florian Stormacq |
 
 ## What this project delivers
@@ -42,6 +42,7 @@ The 22 tables cover the full lifecycle of a fixed asset, from acquisition to dep
 ROADMAP.md                 project plan and progress tracking
 database-scope/            list of the studied tables
 tools/                     scripts used to produce every result
+docker/                    Docker image for third-party tools (SQLInspect)
 01-schema-reconstruction/  PS, LS, CS and foreign key inference
 02-access-analysis/        database access inventories, statistics, used subschema
 03-what-if-analysis/       schema evolution scenarios and impact analysis
@@ -49,7 +50,7 @@ tools/                     scripts used to produce every result
 bonus-version-evolution/   cross-version analysis
 report/                    final report and slides
 target/                    ADempiere source code (Git submodule, read-only)
-workspace/                 Eclipse workspace used by SQLInspect (not versioned)
+workspace/                 Eclipse workspace created by SQLInspect (not versioned)
 ```
 
 Each folder has its own `README.md`. It explains what the folder contains and which command regenerates it. Every result in this repository is meant to be **reproducible** from the pinned source code.
@@ -69,13 +70,13 @@ If the repository is already cloned without the submodule:
 git submodule update --init --depth 1
 ```
 
-Requirements depend on the step. Each folder's README lists its own (Python 3, Java for SQLInspect, …).
+Requirements depend on the step. Each folder's README lists its own (Python 3, Docker for SQLInspect, …).
 
-To install SQLInspect (see [Third-party tools](#third-party-tools)):
+SQLInspect runs in Docker, so the only requirement is [Docker Desktop](https://www.docker.com/products/docker-desktop/) (macOS, Windows) or Docker Engine (Linux). See [Third-party tools](#third-party-tools):
 
 ```bash
-sudo apt install openjdk-21-jdk xvfb
-./tools/fetch_sqlinspect.sh
+./tools/sqlinspect.sh -help          # builds the image on first run, then prints the CLI help
+./tools/run_sqlinspect_asset.sh      # step 2.1 analysis of org.adempiere.asset
 ```
 
 ## Analysed version
@@ -126,19 +127,23 @@ Then update the table above. Results produced on another version must state that
 
 ## Third-party tools
 
-Third-party tools are **not committed**. A script downloads a pinned version into `tools/` (ignored by Git) and checks its integrity.
+Third-party tools are **not committed**. SQLInspect runs in a Docker image built from [`docker/sqlinspect/Dockerfile`](docker/sqlinspect/Dockerfile). The build downloads a pinned version and checks its integrity. Java, the virtual display and all native libraries are inside the image, so the tool behaves the same on Linux, macOS and Windows (WSL).
 
-| Tool | Version | Source | Install |
+| Tool | Version | Source | Run |
 |---|---|---|---|
-| [SQLInspect](https://bitbucket.org/csnagy/sqlinspect) (Nagy & Cleve, ICSE 2018) | CLI `0.4.2.v20241021-1301`, Linux x86_64 | [Bitbucket downloads](https://bitbucket.org/csnagy/sqlinspect/downloads/) | `./tools/fetch_sqlinspect.sh` |
+| [SQLInspect](https://bitbucket.org/csnagy/sqlinspect) (Nagy & Cleve, ICSE 2018) | CLI `0.4.2.v20241021-1301`, Linux x86_64 | [Bitbucket downloads](https://bitbucket.org/csnagy/sqlinspect/downloads/) | `./tools/sqlinspect.sh <args>` |
 
 SQLInspect archive SHA-256: `f91d8c1bfab0d5800d4c0b5d8f1b6dfe75a5044cc184dee499ced96531753c9c`
 
+**How the wrapper works.** `tools/sqlinspect.sh` builds the image `master2-eis/sqlinspect:0.4.2` the first time it runs (set `SQLINSPECT_REBUILD=1` to force a rebuild). It then runs the container with the repository root mounted at `/repo` as the working directory and passes every argument to SQLInspect unchanged. Paths are therefore given relative to the repository root, and the file paths written in the results start with `/repo/`, whatever the machine. The container runs as the host user, so generated files are not owned by root.
+
 **Requirements and known issues:**
 
-- **Java 21 or newer is required.** With Java 17, the tool fails at startup (`Unresolved requirement: osgi.ee ... version=21` in the Eclipse log). If `JAVA_HOME` points to an older JDK, it takes precedence over `update-alternatives`.
-- **No display:** the CLI is an Eclipse application. On a terminal without a graphical session, the analysis completes and writes its results, then crashes on exit (`gtk_init_check() failed`). Run it through `xvfb-run -a`.
-- **Workspace:** the tool creates a `workspace/` folder in the current directory (ignored by Git).
+- **Apple Silicon / ARM:** SQLInspect only ships a Linux x86_64 build with a native GTK launcher, so the image is always `linux/amd64`. On ARM, Docker Desktop emulates it with Rosetta or QEMU. This is slower but gives the same results. If the build fails on a Mac, enable *Use Rosetta for x86_64/amd64 emulation* in Docker Desktop settings.
+- **Java 21** is provided by the image (`eclipse-temurin:21-jre`). The tool does not start with Java 17 (`Unresolved requirement: osgi.ee ... version=21`).
+- **No display:** the CLI is an Eclipse application and crashes on exit without an X display (`gtk_init_check() failed`). The image starts a virtual X server (Xvfb) for each run. `SWT SessionManagerDBus` warnings in the log are harmless.
+- **Workspace:** the tool creates a `workspace/` folder at the repository root (ignored by Git).
+- **Output order:** the order of entries in the result files can change between runs. The content does not.
 - **Supported SQL dialects:** MySQL, Apache Impala, SQLite and MongoDB. **PostgreSQL is not supported**, so ADempiere is analysed with the MySQL dialect. This limitation must be considered when interpreting step 2 results.
 
 ## Contribution rules
