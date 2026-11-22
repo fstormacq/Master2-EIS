@@ -1,0 +1,7 @@
+files,language,blank,comment,code,"github.com/AlDanial/cloc v 2.12  T=0.18 s (460.4 files/s 85126.2 lines/s)"
+77,Java,1725,3761,9313
+1,Ant,24,12,146
+1,Gradle,20,7,110
+2,XML,0,0,42
+1,Properties,0,1,1
+82,SUM,1769,3781,9612
