@@ -46,3 +46,25 @@ Prompt (translated from French): *"Add a markdown note that explains what SQLIns
 ### Wrapper scripts `tools/sqlinspect/sqlinspect.sh` and `tools/sqlinspect/run_sqlinspect_asset.sh`
 
 Written with Claude Opus 5.5 (header `Author: Claude Opus 5.5`). Checked by running the full chain on Linux on 23.11.2026 (`REPRODUCE.md`, "Full re-run"): the results were identical to the previous runs, except for the timings.
+
+### Section "2.1 SQLInspect analysis > Approach" of `02-access-analysis/README.md`
+
+| | |
+|---|---|
+| Model | Claude Opus 5.5 (Claude Code) |
+| Date | 23.11.2026 |
+| Output | Section *Approach* of [`02-access-analysis/README.md`](02-access-analysis/README.md), and the TODO outline of the following sections (the text of those sections is written by the group) |
+| Check | Options compared with `tools/sqlinspect/run_sqlinspect_*.sh` and `./tools/sqlinspect/sqlinspect.sh -help` (supported dialects). File and line references checked in `target/`. |
+
+Prompt (translated from French): *"Check section 1 and add section 2. Prepare sections 3, 4, 5 and 6, which I will write and you will review."*
+
+### Section "Limitations" and review of `02-access-analysis/README.md`
+
+| | |
+|---|---|
+| Model | Claude Opus 5.5 (Claude Code) |
+| Date | 23.11.2026 |
+| Output | List of limitations of SQLInspect (section *Limitations*), then a review of the sections written by the group, with factual and language corrections applied |
+| Check | Each limitation checked against the code (`DB.java:742`, `Query` API usage) and the results (`filtered/summary.md`). The explanation of `{{na}}` was checked on all 35 resolved queries: each one passes its SQL string directly to a JDBC method (`conn.prepareStatement(sql)` or `stmt.executeQuery(sql)`). |
+
+Prompts (translated from French): no prompt were given, but the model provided the text limitations based on the results and the ADempiere codebase.

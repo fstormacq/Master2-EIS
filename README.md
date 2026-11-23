@@ -11,7 +11,7 @@ Group project for **INFOM218 — Software Evolution**, University of Namur (2026
 | **System studied** | ADempiere, `develop` branch, commit [`4ae098f`](https://github.com/adempiere/adempiere/commit/4ae098fd18065f1a658ff56de3b90e63aabfecb2) |
 | **Scope** | Fixed assets functional area: 22 tables, validated by the teaching team on 2 Nov 2026 |
 | **Database** | PostgreSQL |
-| **Status** | In progress: SQLInspect set up (Docker) and tested on the asset module. See [`ROADMAP.md`](ROADMAP.md) for detailed progress |
+| **Status** | In progress: step 1.1 (application overview) and step 2.1 (SQLInspect on `org.adempiere.asset` and `base`, see [`02-access-analysis/README.md`](02-access-analysis/README.md)) done. See [`ROADMAP.md`](ROADMAP.md) for detailed progress |
 | **Team** | Louca Mathieu (spokesperson), Nathan Lambrechts, Florian Stormacq |
 
 ## What this project delivers
@@ -41,6 +41,8 @@ The 22 tables cover the full lifecycle of a fixed asset, from acquisition to dep
 ```
 ROADMAP.md                 project plan and progress tracking
 REPRODUCE.md               every command used to produce the results, in order
+AI_USAGE.md                every use of an LLM: model, date, prompt, how it was checked
+pyproject.toml, uv.lock    Python environment for the scripts in tools/ (managed by uv)
 database-scope/            list of the studied tables
 tools/                     scripts used to produce every result
 docker/                    Docker image for third-party tools (SQLInspect)
@@ -71,9 +73,13 @@ If the repository is already cloned without the submodule:
 git submodule update --init --depth 1
 ```
 
-Requirements depend on the step. Each folder's README lists its own (Python 3, Docker for SQLInspect, …).
+Requirements depend on the step. [`REPRODUCE.md`](REPRODUCE.md#0-setup) lists them all:
 
-SQLInspect runs in Docker, so the only requirement is [Docker Desktop](https://www.docker.com/products/docker-desktop/) (macOS, Windows) or Docker Engine (Linux). See [Third-party tools](#third-party-tools):
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (macOS, Windows) or Docker Engine (Linux) for SQLInspect, see [Third-party tools](#third-party-tools);
+- [uv](https://docs.astral.sh/uv/) for the Python scripts (it installs a suitable Python if needed);
+- [cloc](https://github.com/AlDanial/cloc) for step 1.1.
+
+Step 2.1 in four commands:
 
 ```bash
 ./tools/sqlinspect/sqlinspect.sh -help          # builds the image on first run, then prints the CLI help
@@ -154,7 +160,7 @@ SQLInspect archive SHA-256: `f91d8c1bfab0d5800d4c0b5d8f1b6dfe75a5044cc184dee499c
 - Never modify code inside `target/`: it is a read-only reference.
 - Every generated artefact must come with the command or script that produces it, listed in [`REPRODUCE.md`](REPRODUCE.md).
 - Do not commit database dumps containing real data.
-- When an LLM is used, document the model, the prompts, and how its output was checked against the source code.
+- When an LLM is used, document the model, the prompts, and how its output was checked against the source code, in [`AI_USAGE.md`](AI_USAGE.md). Files written by an LLM also say so in their header.
 
 ## Course context
 

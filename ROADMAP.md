@@ -80,6 +80,8 @@ workspace/                   # workspace Eclipse pour SQLInspect (ignoré par Gi
 - [ ] Un `README.md` par dossier : ce qu'il contient, et la commande pour le régénérer
 - [ ] Convenir des conventions : noms de tables en MAJUSCULES, CSV séparés par `,`, encodage UTF-8
 - [ ] Installer les outils : Python 3, `cloc`, Docker (pour SQLInspect), DB-Main ou un outil de diagramme, éventuellement PostgreSQL via Docker
+  - [x] Docker et SQLInspect, uv et Python (`pyproject.toml`, `uv.lock`), `cloc`
+  - [ ] DB-Main ou outil de diagramme, PostgreSQL éventuel
 
 ---
 
@@ -89,14 +91,16 @@ workspace/                   # workspace Eclipse pour SQLInspect (ignoré par Gi
 
 ### 1.1 Présenter l'application
 
-- [ ] Décrire ADempiere en un paragraphe : un ERP open source, issu d'un fork de Compiere
-- [ ] Mesurer la taille du code : `cloc target/`, avec un tableau par langage
-- [ ] Décrire la structure : modules `base/`, `org.adempiere.asset/`, `client/`, `zkwebui/`, `migration/`, `db/`, `data/`…
-- [ ] Expliquer le fonctionnement du **dictionnaire applicatif** :
+> **Avancement déduit, à confirmer par Nathan.** Les cases ci-dessous sont cochées d'après le contenu de [`application-overview/README.md`](01-schema-reconstruction/application-overview/README.md) (commit `7a5cc07`). Les commandes de la 1.1 listées dans [`REPRODUCE.md`](REPRODUCE.md#11-application-overview) sont aussi **reconstituées** à partir de ce README et des fichiers produits : en particulier, les options `--csv --out` des commandes `cloc` sont déduites du format de `cloc_*.csv`, et n'ont pas été vérifiées avec cloc 2.12.
+
+- [x] Décrire ADempiere en un paragraphe : un ERP open source, issu d'un fork de Compiere
+- [x] Mesurer la taille du code : `cloc target/`, avec un tableau par langage
+- [x] Décrire la structure : modules `base/`, `org.adempiere.asset/`, `client/`, `zkwebui/`, `migration/`, `db/`, `data/`…
+- [x] Expliquer le fonctionnement du **dictionnaire applicatif** :
   - `AD_Table` et `AD_Column` décrivent le schéma ;
   - les classes `X_*` et `I_*` sont générées à partir de ce dictionnaire, dans `base/src/org/adempiere/core/domains/models/` ;
   - les classes `M*` contiennent la logique métier.
-- [ ] Situer le domaine des immobilisations : quels modules et quels packages le concernent ?
+- [x] Situer le domaine des immobilisations : quels modules et quels packages le concernent ? (138 fichiers Java, `asset_related_files.txt`)
 
 ### 1.2 Identifier la source du schéma physique
 
@@ -179,12 +183,14 @@ Le schéma déclare des FK explicites. Il faut donc :
 
 ### 2.1 SQLInspect
 
-- [ ] **À commencer immédiatement** : c'est le poste le plus susceptible de bloquer
+- [x] **À commencer immédiatement** : c'est le poste le plus susceptible de bloquer
 - [x] Installer SQLInspect en ligne de commande : image Docker `linux/amd64` (`docker/sqlinspect/`, wrapper `tools/sqlinspect/sqlinspect.sh`), portable Linux / macOS (ARM émulé) / Windows
-- [ ] Le lancer sur `target/`, en commençant par les modules pertinents : `base/`, `org.adempiere.asset/`
-- [ ] Filtrer les résultats sur les requêtes qui touchent les 22 tables
-- [ ] Sauvegarder les sorties brutes dans `02-access-analysis/sqlinspect-results/raw/`
-- [ ] Documenter la commande exacte, la version de l'outil et les éventuels problèmes rencontrés (fait pour `org.adempiere.asset` : `tools/sqlinspect/run_sqlinspect_*.sh`, README de `raw/`)
+- [x] Le lancer sur `target/`, en commençant par les modules pertinents : `base/`, `org.adempiere.asset/` (runs `asset` : 8 hotspots ; `base` : 620 hotspots, 633 requêtes)
+  - [ ] Éventuellement sur d'autres modules (`client/`, `zkwebui/`…)
+  - [ ] Relancer avec `-schema` quand le `ps.sql` de la 1.3 sera prêt (pour remplir `*-taa.xml`)
+- [x] Filtrer les résultats sur les requêtes qui touchent les 22 tables (`tools/sqlinspect/sqlinspect_summary.py`, `filtered/`) : **aucune requête** ne touche les 22 tables, 598/633 requêtes de `base` sont `{{na}}` (voir [`02-access-analysis/README.md`](02-access-analysis/README.md))
+- [x] Sauvegarder les sorties brutes dans `02-access-analysis/sqlinspect-results/raw/` (un sous-dossier par run : `asset/`, `base/`)
+- [x] Documenter la commande exacte, la version de l'outil et les éventuels problèmes rencontrés : `tools/sqlinspect/run_sqlinspect_*.sh`, [`REPRODUCE.md`](REPRODUCE.md#21-sqlinspect), [`SQLINSPECT_OUTPUTS.md`](02-access-analysis/sqlinspect-results/SQLINSPECT_OUTPUTS.md), analyse et limites dans [`02-access-analysis/README.md`](02-access-analysis/README.md)
 
 ### 2.2 Accès non détectés par SQLInspect
 
