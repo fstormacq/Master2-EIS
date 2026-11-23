@@ -76,8 +76,10 @@ Requirements depend on the step. Each folder's README lists its own (Python 3, D
 SQLInspect runs in Docker, so the only requirement is [Docker Desktop](https://www.docker.com/products/docker-desktop/) (macOS, Windows) or Docker Engine (Linux). See [Third-party tools](#third-party-tools):
 
 ```bash
-./tools/sqlinspect.sh -help          # builds the image on first run, then prints the CLI help
-./tools/run_sqlinspect_asset.sh      # step 2.1 analysis of org.adempiere.asset
+./tools/sqlinspect/sqlinspect.sh -help          # builds the image on first run, then prints the CLI help
+./tools/sqlinspect/run_sqlinspect_asset.sh      # step 2.1 analysis of org.adempiere.asset
+./tools/sqlinspect/run_sqlinspect_base.sh       # step 2.1 analysis of base/
+uv run tools/sqlinspect/sqlinspect_summary.py   # step 2.1 per-run CSV and comparison table
 ```
 
 ## Analysed version
@@ -132,11 +134,11 @@ Third-party tools are **not committed**. SQLInspect runs in a Docker image built
 
 | Tool | Version | Source | Run |
 |---|---|---|---|
-| [SQLInspect](https://bitbucket.org/csnagy/sqlinspect) (Nagy & Cleve, ICSE 2018) | CLI `0.4.2.v20241021-1301`, Linux x86_64 | [Bitbucket downloads](https://bitbucket.org/csnagy/sqlinspect/downloads/) | `./tools/sqlinspect.sh <args>` |
+| [SQLInspect](https://bitbucket.org/csnagy/sqlinspect) (Nagy & Cleve, ICSE 2018) | CLI `0.4.2.v20241021-1301`, Linux x86_64 | [Bitbucket downloads](https://bitbucket.org/csnagy/sqlinspect/downloads/) | `./tools/sqlinspect/sqlinspect.sh <args>` |
 
 SQLInspect archive SHA-256: `f91d8c1bfab0d5800d4c0b5d8f1b6dfe75a5044cc184dee499ced96531753c9c`
 
-**How the wrapper works.** `tools/sqlinspect.sh` builds the image `master2-eis/sqlinspect:0.4.2` the first time it runs (set `SQLINSPECT_REBUILD=1` to force a rebuild). It then runs the container with the repository root mounted at `/repo` as the working directory and passes every argument to SQLInspect unchanged. Paths are therefore given relative to the repository root, and the file paths written in the results start with `/repo/`, whatever the machine. The container runs as the host user, so generated files are not owned by root.
+**How the wrapper works.** `tools/sqlinspect/sqlinspect.sh` builds the image `master2-eis/sqlinspect:0.4.2` the first time it runs (set `SQLINSPECT_REBUILD=1` to force a rebuild). It then runs the container with the repository root mounted at `/repo` as the working directory and passes every argument to SQLInspect unchanged. Paths are therefore given relative to the repository root, and the file paths written in the results start with `/repo/`, whatever the machine. The container runs as the host user, so generated files are not owned by root.
 
 **Requirements and known issues:**
 

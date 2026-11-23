@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<TableAccesses>
+  <Database>
+    <Statement Id="107" Path="/repo/target/base/src/org/compiere/db/TestConnection.java" Line="150">
+    </Statement>
+    <Statement Id="129" Path="/repo/target/base/src/org/compiere/db/DB_PostgreSQL.java" Line="837">
+    </Statement>
+    <Statement Id="151" Path="/repo/target/base/src/org/compiere/db/DB_MySQL.java" Line="793">
+    </Statement>
+    <Statement Id="173" Path="/repo/target/base/src/org/compiere/db/DB_MariaDB.java" Line="758">
+    </Statement>
+    <Statement Id="178" Path="/repo/target/base/src/org/compiere/dbPort/JdbcTest.java" Line="332">
+    </Statement>
+    <Statement Id="183" Path="/repo/target/base/src/org/compiere/dbPort/JdbcTest.java" Line="430">
+    </Statement>
+    <Statement Id="188" Path="/repo/target/base/src/org/compiere/dbPort/JdbcTestPG.java" Line="219">
+    </Statement>
+    <Statement Id="193" Path="/repo/target/base/src/org/compiere/dbPort/JdbcTestPG.java" Line="310">
+    </Statement>
+    <Statement Id="216" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="148">
+    </Statement>
+    <Statement Id="240" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="0">
+    </Statement>
+    <Statement Id="263" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="148">
+    </Statement>
+    <Statement Id="271" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="180">
+    </Statement>
+    <Statement Id="287" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="209">
+    </Statement>
+    <Statement Id="298" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="241">
+    </Statement>
+    <Statement Id="309" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="241">
+    </Statement>
+    <Statement Id="345" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="523">
+    </Statement>
+    <Statement Id="424" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="523">
+    </Statement>
+    <Statement Id="457" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="523">
+    </Statement>
+    <Statement Id="530" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="523">
+    </Statement>
+    <Statement Id="538" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="560">
+    </Statement>
+    <Statement Id="612" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="809">
+    </Statement>
+    <Statement Id="639" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="809">
+    </Statement>
+    <Statement Id="710" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="809">
+    </Statement>
+    <Statement Id="737" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="809">
+    </Statement>
+    <Statement Id="745" Path="/repo/target/base/src/org/compiere/model/MSequence.java" Line="849">
+    </Statement>
+    <Statement Id="754" Path="/repo/target/base/src/org/compiere/model/PO_LOB.java" Line="146">
+    </Statement>
+    <Statement Id="763" Path="/repo/target/base/src/org/compiere/model/MCountry.java" Line="139">
+    </Statement>
+    <Statement Id="771" Path="/repo/target/base/src/org/compiere/model/MRegion.java" Line="63">
+    </Statement>
+    <Statement Id="818" Path="/repo/target/base/src/org/compiere/process/ReplicationLocal.java" Line="564">
+    </Statement>
+    <Statement Id="874" Path="/repo/target/base/src/org/compiere/process/ReplicationLocal.java" Line="564">
+    </Statement>
+    <Statement Id="930" Path="/repo/target/base/src/org/compiere/process/ReplicationLocal.java" Line="564">
+    </Statement>
+    <Statement Id="939" Path="/repo/target/base/src/org/compiere/process/ColumnEncryption.java" Line="293">
+    </Statement>
+    <Statement Id="945" Path="/repo/target/base/src/org/compiere/process/ColumnEncryption.java" Line="303">
+    </Statement>
+    <Statement Id="956" Path="/repo/target/base/src/org/compiere/process/ColumnEncryption.java" Line="379">
+    </Statement>
+    <Statement Id="962" Path="/repo/target/base/src/org/compiere/process/InventoryCountCreate.java" Line="363">
+    </Statement>
+</Database>  
+</TableAccesses>

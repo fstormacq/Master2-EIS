@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<Project>
+  <Database name="DB">
+    <Schemas>
+      <Schema name="SCH">
+        <Tables>
+        </Tables>
+</Schema>
+    </Schemas>
+  </Database>
+</Project>

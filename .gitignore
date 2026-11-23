@@ -1,3 +1,11 @@
-tools/sqlinspect/
+# --- Project Specific ---
 workspace/
-02-access-analysis/sqlinspect-results/raw/*.log
+
+# --- Logs ---
+*.log
+
+# --- Python Specific ---
+.venv
+
+# --- MacOS Specific ---
+.DS_Store

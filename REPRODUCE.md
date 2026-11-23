@@ -17,7 +17,7 @@ A result without an entry here is not considered reproducible. Manual steps (DB-
 
 ## 0. Setup
 
-Requirements: Git, Docker ([Docker Desktop](https://www.docker.com/products/docker-desktop/) on macOS/Windows, Docker Engine on Linux).
+Requirements: Git, Docker ([Docker Desktop](https://www.docker.com/products/docker-desktop/) on macOS/Windows, Docker Engine on Linux), [uv](https://docs.astral.sh/uv/) for the Python scripts.
 
 ```bash
 git clone --recurse-submodules --shallow-submodules https://github.com/fstormacq/Master2-EIS.git
@@ -27,8 +27,11 @@ cd Master2-EIS
 git submodule status
 # expected: 4ae098fd18065f1a658ff56de3b90e63aabfecb2 target
 
+# Creates the environment
+uv sync
+
 # Build the SQLInspect image and check it works (first run: a few minutes)
-./tools/sqlinspect.sh -help
+./tools/sqlinspect/sqlinspect.sh -help
 ```
 
 | Tool | Version | How it is pinned |
@@ -36,6 +39,7 @@ git submodule status
 | ADempiere (analysed system) | `develop` @ `4ae098f` | Git submodule `target/` |
 | SQLInspect | `0.4.2.v20241021-1301` | `docker/sqlinspect/Dockerfile` (SHA-256 checked) |
 | Java (for SQLInspect) | Temurin 21 JRE | Docker base image `eclipse-temurin:21-jre` |
+| Python (for `tools/**/*.py`) | ≥ 3.14, standard library only | `pyproject.toml` / `uv.lock`, run with `uv run` |
 
 ## 1. Schema reconstruction
 
@@ -51,16 +55,20 @@ git submodule status
 
 | Result | Command | Output | Notes |
 |---|---|---|---|
-| JDBC accesses of the asset module | `./tools/run_sqlinspect_asset.sh` | `02-access-analysis/sqlinspect-results/raw/adempiere-asset-*` | MySQL dialect (PostgreSQL unsupported). 8 hotspots, 8 queries. Entry order varies between runs, content does not. `*.SQLInspect.stats` holds timings and changes every run. |
+| JDBC accesses of the asset module | `./tools/sqlinspect/run_sqlinspect_asset.sh` | `02-access-analysis/sqlinspect-results/raw/asset/adempiere-asset-*` | MySQL dialect (PostgreSQL unsupported). 8 hotspots, 8 queries, all `{{na}}`. About 3 s. |
+| JDBC accesses of the core module `base/` | `./tools/sqlinspect/run_sqlinspect_base.sh` | `02-access-analysis/sqlinspect-results/raw/base/adempiere-base-*` | Same options. 620 hotspots, 633 queries, 598 `{{na}}`. About 40 s and 1 GB of memory. |
+| Per-run query CSV and comparison table | `uv run tools/sqlinspect/sqlinspect_summary.py` | `02-access-analysis/sqlinspect-results/filtered/<run>-queries.csv`, `filtered/summary.md` | Reads every run in `raw/`. Run after the two commands above. Script AI-generated (see [`AI_USAGE.md`](AI_USAGE.md)), outputs checked against `raw/`. |
 
-Underlying SQLInspect command (inside the container, working directory = repository root):
+For all SQLInspect runs: entry order varies between runs, content does not (the CSVs are sorted, so they are stable). `*-SQLInspect.stats` holds timings and changes every run. The `*.log` files are ignored by Git. What each output file contains is explained in [`SQLINSPECT_OUTPUTS.md`](02-access-analysis/sqlinspect-results/SQLINSPECT_OUTPUTS.md).
+
+Underlying SQLInspect command (inside the container, working directory = repository root), with `<run>` = `asset` (`-projectdir target/org.adempiere.asset`) or `base` (`-projectdir target/base`):
 
 ```bash
-sqlinspect -projectname adempiere-asset \
-  -projectdir target/org.adempiere.asset \
+sqlinspect -projectname adempiere-<run> \
+  -projectdir <projectdir> \
   -hotspotfinder JDBCHotspotFinder \
   -dialect MySQL \
-  -outdir 02-access-analysis/sqlinspect-results/raw
+  -outdir 02-access-analysis/sqlinspect-results/raw/<run>
 ```
 
 ### 2.2 Accesses not detected by SQLInspect
@@ -88,5 +96,17 @@ sqlinspect -projectname adempiere-asset \
 Commands to regenerate every result, in order. Keep this list in sync with the sections above.
 
 ```bash
-./tools/run_sqlinspect_asset.sh
+# 0. Setup: build the SQLInspect image
+./tools/sqlinspect/sqlinspect.sh -help
+
+# 1. Schema reconstruction
+
+# 2. Database access analysis
+./tools/sqlinspect/run_sqlinspect_asset.sh
+./tools/sqlinspect/run_sqlinspect_base.sh
+uv run tools/sqlinspect/sqlinspect_summary.py
+
+# 3. What-if analysis
+
+# 4. Quality assessment
 ```

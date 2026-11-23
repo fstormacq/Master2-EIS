@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Step 2.1: run SQLInspect on the ADempiere asset module (org.adempiere.asset).
-# Output: 02-access-analysis/sqlinspect-results/raw/adempiere-asset-*
+# Output: 02-access-analysis/sqlinspect-results/raw/asset/adempiere-asset-*
 #
 # - JDBC hotspots only (ADempiere does not use JPA/Spring for data access)
 # - MySQL dialect: PostgreSQL is not supported by SQLInspect
@@ -9,12 +9,12 @@
 # Author: Claude Opus 5.5
 
 set -euo pipefail
-cd "$(dirname "$0")/.."
+cd "$(dirname "$0")/../.."
 
-OUT="02-access-analysis/sqlinspect-results/raw"
+OUT="02-access-analysis/sqlinspect-results/raw/asset"
 mkdir -p "$OUT"
 
-./tools/sqlinspect.sh \
+./tools/sqlinspect/sqlinspect.sh \
   -projectname adempiere-asset \
   -projectdir target/org.adempiere.asset \
   -hotspotfinder JDBCHotspotFinder \

@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<Smells>
+  <Smell>
+    <Kind>IMPLICIT_COLUMNS</Kind>
+    <File>/repo/target/base/src/org/compiere/db/TestConnection.java</File>
+    <Line>150</Line>
+    <Certainty>NORMAL_CERTAINTY</Certainty>
+    <Message>Name columns explicitly.</Message>
+  </Smell>
+  <Smell>
+    <Kind>IMPLICIT_COLUMNS</Kind>
+    <File>/repo/target/base/src/org/compiere/dbPort/JdbcTest.java</File>
+    <Line>332</Line>
+    <Certainty>NORMAL_CERTAINTY</Certainty>
+    <Message>Name columns explicitly.</Message>
+  </Smell>
+  <Smell>
+    <Kind>IMPLICIT_COLUMNS</Kind>
+    <File>/repo/target/base/src/org/compiere/dbPort/JdbcTest.java</File>
+    <Line>430</Line>
+    <Certainty>NORMAL_CERTAINTY</Certainty>
+    <Message>Name columns explicitly.</Message>
+  </Smell>
+  <Smell>
+    <Kind>IMPLICIT_COLUMNS</Kind>
+    <File>/repo/target/base/src/org/compiere/dbPort/JdbcTestPG.java</File>
+    <Line>219</Line>
+    <Certainty>NORMAL_CERTAINTY</Certainty>
+    <Message>Name columns explicitly.</Message>
+  </Smell>
+  <Smell>
+    <Kind>IMPLICIT_COLUMNS</Kind>
+    <File>/repo/target/base/src/org/compiere/dbPort/JdbcTestPG.java</File>
+    <Line>310</Line>
+    <Certainty>NORMAL_CERTAINTY</Certainty>
+    <Message>Name columns explicitly.</Message>
+  </Smell>
+  <Smell>
+    <Kind>IMPLICIT_COLUMNS</Kind>
+    <File>/repo/target/base/src/org/compiere/model/MCountry.java</File>
+    <Line>139</Line>
+    <Certainty>NORMAL_CERTAINTY</Certainty>
+    <Message>Name columns explicitly.</Message>
+  </Smell>
+  <Smell>
+    <Kind>IMPLICIT_COLUMNS</Kind>
+    <File>/repo/target/base/src/org/compiere/model/MRegion.java</File>
+    <Line>63</Line>
+    <Certainty>NORMAL_CERTAINTY</Certainty>
+    <Message>Name columns explicitly.</Message>
+  </Smell>
+</Smells>

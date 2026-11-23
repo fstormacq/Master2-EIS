@@ -1,0 +1,9 @@
+run,id,file,line,class,method,exec_string,resolved,operation,tables_in_scope,sql
+asset,1,target/org.adempiere.asset/src/main/java/base/org/compiere/asset/controller/CalloutAsset.java,95,CalloutAsset,tablePeriod,pstmt.executeQuery(),False,,,{{na}}
+asset,2,target/org.adempiere.asset/src/main/java/base/org/compiere/asset/controller/CalloutAsset.java,143,CalloutAsset,fieldClear,pstmt.executeQuery(),False,,,{{na}}
+asset,8,target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MDepreciationConvention.java,90,MDepreciationConvention,invoke,cs.execute(),False,,,{{na}}
+asset,3,target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MDepreciationMethod.java,175,MDepreciationMethod,invoke,cs.execute(),False,,,{{na}}
+asset,4,target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MRegistration.java,133,MRegistration,getValues,pstmt.executeQuery(),False,,,{{na}}
+asset,5,target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MRegistration.java,179,MRegistration,createMissingValues,pstmt.executeQuery(),False,,,{{na}}
+asset,7,target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/MRegistrationAttribute.java,63,MRegistrationAttribute,getAll,pstmt.executeQuery(),False,,,{{na}}
+asset,6,target/org.adempiere.asset/src/main/java/base/org/compiere/asset/model/SetGetUtil.java,97,SetGetUtil,updateColumns,pstmt.executeQuery(),False,,,{{na}}

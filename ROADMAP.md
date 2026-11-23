@@ -180,11 +180,11 @@ Le schéma déclare des FK explicites. Il faut donc :
 ### 2.1 SQLInspect
 
 - [ ] **À commencer immédiatement** : c'est le poste le plus susceptible de bloquer
-- [x] Installer SQLInspect en ligne de commande : image Docker `linux/amd64` (`docker/sqlinspect/`, wrapper `tools/sqlinspect.sh`), portable Linux / macOS (ARM émulé) / Windows
+- [x] Installer SQLInspect en ligne de commande : image Docker `linux/amd64` (`docker/sqlinspect/`, wrapper `tools/sqlinspect/sqlinspect.sh`), portable Linux / macOS (ARM émulé) / Windows
 - [ ] Le lancer sur `target/`, en commençant par les modules pertinents : `base/`, `org.adempiere.asset/`
 - [ ] Filtrer les résultats sur les requêtes qui touchent les 22 tables
 - [ ] Sauvegarder les sorties brutes dans `02-access-analysis/sqlinspect-results/raw/`
-- [ ] Documenter la commande exacte, la version de l'outil et les éventuels problèmes rencontrés (fait pour `org.adempiere.asset` : `tools/run_sqlinspect_asset.sh`, README de `raw/`)
+- [ ] Documenter la commande exacte, la version de l'outil et les éventuels problèmes rencontrés (fait pour `org.adempiere.asset` : `tools/sqlinspect/run_sqlinspect_*.sh`, README de `raw/`)
 
 ### 2.2 Accès non détectés par SQLInspect
 
